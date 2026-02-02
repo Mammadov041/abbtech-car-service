@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-car-feature/20260123-1-create-tbl-car-feature.yaml
+  - changeSet:
+      id: 20260123-1-create-tbl-car-feature
+      author: said
+      changes:
+        - createTable:
+            tableName: car_feature
+            columns:
+              - column:
+                  name: car_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: feature_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: car_feature
+            columnNames: car_id, feature_id
+            constraintName: pk_car_feature
+
+        - addForeignKeyConstraint:
+            baseColumnNames: car_id
+            baseTableName: car_feature
+            constraintName: fk_car_feature_car
+            referencedColumnNames: id
+            referencedTableName: car
+
+        - addForeignKeyConstraint:
+            baseColumnNames: feature_id
+            baseTableName: car_feature
+            constraintName: fk_car_feature_feature
+            referencedColumnNames: id
+            referencedTableName: feature

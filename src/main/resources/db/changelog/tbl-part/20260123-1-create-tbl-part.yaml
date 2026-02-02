@@ -1,11 +1,11 @@
 databaseChangeLog:
-  - logicalFilePath: tbl-brand/20260123-1-create-tbl-brand.yaml
+  - logicalFilePath: tbl-part/20260123-1-create-tbl-part.yaml
   - changeSet:
-      id: 20260123-1-create-tbl-brand
+      id: 20260123-1-create-tbl-part
       author: said
       changes:
         - createTable:
-            tableName: brand
+            tableName: part
             columns:
               - column:
                   name: id
@@ -18,15 +18,15 @@ databaseChangeLog:
               - column:
                   name: name
                   type: varchar(255)
-                  constraints:
-                    nullable: false
-                    unique: true
               - column:
-                  name: country
+                  name: part_code
                   type: varchar(255)
               - column:
-                  name: founded_year
-                  type: int
+                  name: description
+                  type: varchar(255)
               - column:
-                  name: trigger_column
-                  type: varchar(200)
+                  name: unit_price
+                  type: decimal(10,2)
+              - column:
+                  name: brand
+                  type: varchar(255)

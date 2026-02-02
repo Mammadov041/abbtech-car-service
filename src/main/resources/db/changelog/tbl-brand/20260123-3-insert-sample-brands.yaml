@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-brand/20260123-3-insert-sample-brands.yaml
+  - changeSet:
+      id: 20260123-3-insert-sample-brands
+      author: said
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO brand (name, country, founded_year, trigger_column)
+              SELECT 'Brand_' || i,
+                     CASE
+                         WHEN i % 5 = 0 THEN 'Germany'
+                         WHEN i % 5 = 1 THEN 'USA'
+                         WHEN i % 5 = 2 THEN 'Japan'
+                         WHEN i % 5 = 3 THEN 'France'
+                         ELSE 'Italy'
+                     END,
+                     1920 + (i % 100),
+                     NULL
+              FROM generate_series(1, 100) AS s(i)
+              ON CONFLICT (name) DO NOTHING;

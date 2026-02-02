@@ -1,11 +1,11 @@
 databaseChangeLog:
-  - logicalFilePath: tbl-model/20260123-1-create-tbl-model.yaml
+  - logicalFilePath: tbl-car/20260123-1-create-tbl-car.yaml
   - changeSet:
-      id: 20260123-1-create-tbl-model
+      id: 20260123-1-create-tbl-car
       author: said
       changes:
         - createTable:
-            tableName: model
+            tableName: car
             columns:
               - column:
                   name: id
@@ -16,30 +16,32 @@ databaseChangeLog:
                   autoIncrement: true
                   incrementBy: 1
               - column:
-                  name: name
-                  type: varchar(255)
+                  name: vin
+                  type: varchar(20)
                   constraints:
                     nullable: false
               - column:
-                  name: category
-                  type: varchar(255)
+                  name: registration_number
+                  type: varchar(10)
                   constraints:
                     nullable: false
               - column:
-                  name: year_from
+                  name: mileage_km
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: production_year
                   type: int
               - column:
-                  name: year_to
-                  type: int
-              - column:
-                  name: brand_id
+                  name: model_id
                   type: int
                   constraints:
                     nullable: false
 
         - addForeignKeyConstraint:
-            baseColumnNames: brand_id
-            baseTableName: model
-            constraintName: fk_model_brand
+            baseColumnNames: model_id
+            baseTableName: car
+            constraintName: fk_car_model
             referencedColumnNames: id
-            referencedTableName: brand
+            referencedTableName: model

@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-permission/20260123-2-insert-seed-permissions.yaml
+  - changeSet:
+      id: 20260123-2-insert-seed-permissions
+      author: said
+      changes:
+        - insert:
+            tableName: permission
+            columns:
+              - column:
+                  name: http_method
+                  value: GET
+              - column:
+                  name: path_pattern
+                  value: /brands
+              - column:
+                  name: permission_code
+                  value: brand:read
+        - insert:
+            tableName: permission
+            columns:
+              - column:
+                  name: http_method
+                  value: POST
+              - column:
+                  name: path_pattern
+                  value: /brands
+              - column:
+                  name: permission_code
+                  value: brand:update
+        - insert:
+            tableName: permission
+            columns:
+              - column:
+                  name: http_method
+                  value: GET
+              - column:
+                  name: path_pattern
+                  value: /users
+              - column:
+                  name: permission_code
+                  value: user:manage
+        - insert:
+            tableName: permission
+            columns:
+              - column:
+                  name: http_method
+                  value: POST
+              - column:
+                  name: path_pattern
+                  value: /services
+              - column:
+                  name: permission_code
+                  value: service:create

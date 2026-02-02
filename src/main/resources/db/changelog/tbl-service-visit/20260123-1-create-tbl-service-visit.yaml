@@ -1,11 +1,11 @@
 databaseChangeLog:
-  - logicalFilePath: tbl-model/20260123-1-create-tbl-model.yaml
+  - logicalFilePath: tbl-service-visit/20260123-1-create-tbl-service-visit.yaml
   - changeSet:
-      id: 20260123-1-create-tbl-model
+      id: 20260123-1-create-tbl-service-visit
       author: said
       changes:
         - createTable:
-            tableName: model
+            tableName: service_visit
             columns:
               - column:
                   name: id
@@ -16,30 +16,32 @@ databaseChangeLog:
                   autoIncrement: true
                   incrementBy: 1
               - column:
-                  name: name
+                  name: service_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: odometer_km
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: service_type
                   type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: category
+                  name: notes
                   type: varchar(255)
-                  constraints:
-                    nullable: false
               - column:
-                  name: year_from
-                  type: int
-              - column:
-                  name: year_to
-                  type: int
-              - column:
-                  name: brand_id
+                  name: car_id
                   type: int
                   constraints:
                     nullable: false
 
         - addForeignKeyConstraint:
-            baseColumnNames: brand_id
-            baseTableName: model
-            constraintName: fk_model_brand
+            baseColumnNames: car_id
+            baseTableName: service_visit
+            constraintName: fk_service_visit_car
             referencedColumnNames: id
-            referencedTableName: brand
+            referencedTableName: car

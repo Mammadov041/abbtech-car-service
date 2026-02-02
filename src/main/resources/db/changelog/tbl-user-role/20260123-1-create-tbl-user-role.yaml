@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-user-role/20260123-1-create-tbl-user-role.yaml
+  - changeSet:
+      id: 20260123-1-create-tbl-user-role
+      author: said
+      changes:
+        - createTable:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: user_role
+            columnNames: user_id, role_id
+            constraintName: pk_user_role
+
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: user_role
+            constraintName: fk_user_role_user
+            referencedColumnNames: id
+            referencedTableName: app_user
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: user_role
+            constraintName: fk_user_role_role
+            referencedColumnNames: id
+            referencedTableName: role
+            onDelete: CASCADE

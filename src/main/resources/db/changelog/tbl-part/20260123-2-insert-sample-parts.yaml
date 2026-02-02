@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-part/20260123-2-insert-sample-parts.yaml
+  - changeSet:
+      id: 20260123-2-insert-sample-parts
+      author: said
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO part (name, part_code, description, unit_price, brand)
+              SELECT 'Part_' || i,
+                     'PCODE' || LPAD(i::text, 6, '0'),
+                     'Description of part ' || i,
+                     ROUND((10 + random() * 490)::numeric, 2),
+                     CASE
+                         WHEN i % 5 = 0 THEN 'Bosch'
+                         WHEN i % 5 = 1 THEN 'Delphi'
+                         WHEN i % 5 = 2 THEN 'Valeo'
+                         WHEN i % 5 = 3 THEN 'Denso'
+                         ELSE 'Magneti Marelli'
+                     END
+              FROM generate_series(1, 200) AS s(i);

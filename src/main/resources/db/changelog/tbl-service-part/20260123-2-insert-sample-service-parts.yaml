@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-service-part/20260123-2-insert-sample-service-parts.yaml
+  - changeSet:
+      id: 20260123-2-insert-sample-service-parts
+      author: said
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO service_part (service_id, part_id, quantity)
+              SELECT (i % 1000) + 1,
+                     (i % 200) + 1,
+                     1 + (i % 5)
+              FROM generate_series(1, 1500) AS s(i);

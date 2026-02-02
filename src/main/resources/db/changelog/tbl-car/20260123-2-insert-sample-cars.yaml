@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-car/20260123-2-insert-sample-cars.yaml
+  - changeSet:
+      id: 20260123-2-insert-sample-cars
+      author: said
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO car (model_id, vin, registration_number, mileage_km, production_year)
+              SELECT (i % 300) + 1,
+                     LEFT('VIN' || md5(i::text), 17) || LPAD(i::text, 3, '0'),
+                     'REG' || LPAD(i::text, 7, '0'),
+                     10000 + (i * 7 % 200000),
+                     2000 + (i % 25)
+              FROM generate_series(1, 500) AS s(i);

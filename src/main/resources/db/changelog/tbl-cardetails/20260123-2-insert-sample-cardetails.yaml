@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-cardetails/20260123-2-insert-sample-cardetails.yaml
+  - changeSet:
+      id: 20260123-2-insert-sample-cardetails
+      author: said
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO cardetails (car_id, engine_number, registration_code, fuel_type, engine_capacity, color, insurance_number)
+              SELECT c.id,
+                     LEFT('ENG' || md5(c.id::text), 20),
+                     LPAD('RC' || c.id::text, 20, '0'),
+                     CASE
+                         WHEN c.id % 3 = 0 THEN 'Petrol'
+                         WHEN c.id % 3 = 1 THEN 'Diesel'
+                         ELSE 'Electric'
+                     END,
+                     (1000 + (c.id % 2500)) || 'cc',
+                     CASE
+                         WHEN c.id % 4 = 0 THEN 'Red'
+                         WHEN c.id % 4 = 1 THEN 'Black'
+                         WHEN c.id % 4 = 2 THEN 'Blue'
+                         ELSE 'White'
+                     END,
+                     'INS' || c.id || '-' || LEFT(md5(c.id::text), 10)
+              FROM car c
+              ON CONFLICT (car_id) DO NOTHING;

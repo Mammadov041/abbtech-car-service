@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-role/20260123-2-insert-seed-roles.yaml
+  - changeSet:
+      id: 20260123-2-insert-seed-roles
+      author: said
+      changes:
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: Admin
+              - column:
+                  name: description
+                  value: Full access to all modules
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: Mechanic
+              - column:
+                  name: description
+                  value: Limited to service and brand updates
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: Viewer
+              - column:
+                  name: description
+                  value: Read-only access

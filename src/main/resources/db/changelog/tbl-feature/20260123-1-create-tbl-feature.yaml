@@ -1,11 +1,11 @@
 databaseChangeLog:
-  - logicalFilePath: tbl-brand/20260123-1-create-tbl-brand.yaml
+  - logicalFilePath: tbl-feature/20260123-1-create-tbl-feature.yaml
   - changeSet:
-      id: 20260123-1-create-tbl-brand
+      id: 20260123-1-create-tbl-feature
       author: said
       changes:
         - createTable:
-            tableName: brand
+            tableName: feature
             columns:
               - column:
                   name: id
@@ -16,17 +16,16 @@ databaseChangeLog:
                   autoIncrement: true
                   incrementBy: 1
               - column:
-                  name: name
-                  type: varchar(255)
+                  name: feature_id
+                  type: int
                   constraints:
-                    nullable: false
                     unique: true
               - column:
-                  name: country
+                  name: name
                   type: varchar(255)
               - column:
-                  name: founded_year
-                  type: int
+                  name: description
+                  type: varchar(255)
               - column:
-                  name: trigger_column
-                  type: varchar(200)
+                  name: category
+                  type: varchar(255)

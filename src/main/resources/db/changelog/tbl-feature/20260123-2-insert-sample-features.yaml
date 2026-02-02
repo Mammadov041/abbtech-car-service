@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-feature/20260123-2-insert-sample-features.yaml
+  - changeSet:
+      id: 20260123-2-insert-sample-features
+      author: said
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO feature (feature_id, name, description, category)
+              SELECT i,
+                     'Feature_' || i,
+                     'This is feature number ' || i,
+                     CASE
+                         WHEN i % 3 = 0 THEN 'Safety'
+                         WHEN i % 3 = 1 THEN 'Comfort'
+                         ELSE 'Entertainment'
+                     END
+              FROM generate_series(1, 100) AS s(i);
