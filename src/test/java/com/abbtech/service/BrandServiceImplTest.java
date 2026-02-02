@@ -91,7 +91,7 @@ class BrandServiceImplTest {
     void addBrand_WithModels_ShouldCreateBrandWithModels() {
         // Arrange
         ReqModelDto reqModelDto = new ReqModelDto(
-                null,
+                1,
                 null,
                 "Camry",
                 "Sedan",

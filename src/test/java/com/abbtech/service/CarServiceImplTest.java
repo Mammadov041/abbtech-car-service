@@ -4,6 +4,7 @@ import com.abbtech.dto.request.ReqCarDto;
 import com.abbtech.dto.response.RespCarDto;
 import com.abbtech.exception.CarErrorEnum;
 import com.abbtech.exception.CarException;
+import com.abbtech.mapper.CarMapper;
 import com.abbtech.model.Brand;
 import com.abbtech.model.Car;
 import com.abbtech.model.Model;
@@ -34,6 +35,9 @@ class CarServiceImplTest {
 
     @Mock
     private ModelRepository modelRepository;
+
+    @Mock
+    private CarMapper carMapper;
 
     @InjectMocks
     private CarServiceImpl carService;
@@ -249,7 +253,7 @@ class CarServiceImplTest {
     @Test
     void mapToDto_ShouldMapCarToDtoCorrectly() {
         // Act
-        RespCarDto result = carService.mapToDto(testCar);
+        RespCarDto result = carMapper.toDto(testCar);
 
         // Assert
         assertNotNull(result);
@@ -275,7 +279,7 @@ class CarServiceImplTest {
         List<Car> cars = Arrays.asList(testCar, car2);
 
         // Act
-        List<RespCarDto> result = carService.mapToDtoList(cars);
+        List<RespCarDto> result = carMapper.toDtoList(cars);
 
         // Assert
         assertNotNull(result);
