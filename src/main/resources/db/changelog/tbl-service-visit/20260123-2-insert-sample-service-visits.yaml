@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-service-visit/20260123-2-insert-sample-service-visits.yaml
+  - changeSet:
+      id: 20260123-2-insert-sample-service-visits
+      author: said
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO service_visit (car_id, service_date, odometer_km, service_type, notes)
+              SELECT (i % 500) + 1,
+                     NOW() - (i || ' days')::interval,
+                     5000 + ((i * 100) % 200000),
+                     CASE
+                         WHEN i % 3 = 0 THEN 'Maintenance'
+                         WHEN i % 3 = 1 THEN 'Repair'
+                         ELSE 'Inspection'
+                     END,
+                     'Note for service ' || i
+              FROM generate_series(1, 1000) AS s(i);

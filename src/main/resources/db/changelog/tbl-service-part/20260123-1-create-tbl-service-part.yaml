@@ -1,0 +1,117 @@
+databaseChangeLog:
+  # Core Tables
+  - include:
+      file: tbl-brand/20260123-1-create-tbl-brand.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-brand/20260123-2-create-trigger-brand.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-model/20260123-1-create-tbl-model.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-car/20260123-1-create-tbl-car.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-cardetails/20260123-1-create-tbl-cardetails.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-service-visit/20260123-1-create-tbl-service-visit.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-part/20260123-1-create-tbl-part.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-service-part/20260123-1-create-tbl-service-part.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-feature/20260123-1-create-tbl-feature.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-car-feature/20260123-1-create-tbl-car-feature.yaml
+      relativeToChangelogFile: true
+
+  # Auth/RBAC Tables
+  - include:
+      file: tbl-app-user/20260123-1-create-tbl-app-user.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-role/20260123-1-create-tbl-role.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-user-role/20260123-1-create-tbl-user-role.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-permission/20260123-1-create-tbl-permission.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-role-permission/20260123-1-create-tbl-role-permission.yaml
+      relativeToChangelogFile: true
+
+  # Seed Data
+  - include:
+      file: tbl-role/20260123-2-insert-seed-roles.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: tbl-permission/20260123-2-insert-seed-permissions.yaml
+      relativeToChangelogFile: true
+
+  # Sample Data (Optional - can be excluded for production)
+  - include:
+      file: tbl-brand/20260123-3-insert-sample-brands.yaml
+      relativeToChangelogFile: true
+      context: dev
+
+  - include:
+      file: tbl-model/20260123-2-insert-sample-models.yaml
+      relativeToChangelogFile: true
+      context: dev
+
+  - include:
+      file: tbl-car/20260123-2-insert-sample-cars.yaml
+      relativeToChangelogFile: true
+      context: dev
+
+  - include:
+      file: tbl-cardetails/20260123-2-insert-sample-cardetails.yaml
+      relativeToChangelogFile: true
+      context: dev
+
+  - include:
+      file: tbl-service-visit/20260123-2-insert-sample-service-visits.yaml
+      relativeToChangelogFile: true
+      context: dev
+
+  - include:
+      file: tbl-part/20260123-2-insert-sample-parts.yaml
+      relativeToChangelogFile: true
+      context: dev
+
+  - include:
+      file: tbl-service-part/20260123-2-insert-sample-service-parts.yaml
+      relativeToChangelogFile: true
+      context: dev
+
+  - include:
+      file: tbl-feature/20260123-2-insert-sample-features.yaml
+      relativeToChangelogFile: true
+      context: dev
+
+  - include:
+      file: tbl-car-feature/20260123-2-insert-sample-car-features.yaml
+      relativeToChangelogFile: true
+      context: dev

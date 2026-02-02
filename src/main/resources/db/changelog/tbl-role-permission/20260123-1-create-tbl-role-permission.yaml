@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-role-permission/20260123-1-create-tbl-role-permission.yaml
+  - changeSet:
+      id: 20260123-1-create-tbl-role-permission
+      author: said
+      changes:
+        - createTable:
+            tableName: role_permission
+            columns:
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: permission_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: role_permission
+            columnNames: role_id, permission_id
+            constraintName: pk_role_permission
+
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: role_permission
+            constraintName: fk_role_permission_role
+            referencedColumnNames: id
+            referencedTableName: role
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseColumnNames: permission_id
+            baseTableName: role_permission
+            constraintName: fk_role_permission_permission
+            referencedColumnNames: id
+            referencedTableName: permission
+            onDelete: CASCADE

@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - logicalFilePath: tbl-model/20260123-2-insert-sample-models.yaml
+  - changeSet:
+      id: 20260123-2-insert-sample-models
+      author: said
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO model (brand_id, name, category, year_from, year_to)
+              SELECT (i % 100) + 1,
+                     'Model_' || i,
+                     CASE
+                         WHEN i % 4 = 0 THEN 'Sedan'
+                         WHEN i % 4 = 1 THEN 'SUV'
+                         WHEN i % 4 = 2 THEN 'Truck'
+                         ELSE 'Hatchback'
+                     END,
+                     1990 + (i % 30),
+                     2020 + (i % 5)
+              FROM generate_series(1, 300) AS s(i);

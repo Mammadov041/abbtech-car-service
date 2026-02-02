@@ -1,0 +1,92 @@
+databaseChangeLog:
+  # Core Tables
+  - include:
+      file: tbl-brand/20260123-1-create-tbl-brand.yaml
+
+  - include:
+      file: tbl-brand/20260123-2-create-trigger-brand.yaml
+
+  - include:
+      file: tbl-model/20260123-1-create-tbl-model.yaml
+
+  - include:
+      file: tbl-car/20260123-1-create-tbl-car.yaml
+
+  - include:
+      file: tbl-cardetails/20260123-1-create-tbl-cardetails.yaml
+
+  - include:
+      file: tbl-service-visit/20260123-1-create-tbl-service-visit.yaml
+
+  - include:
+      file: tbl-part/20260123-1-create-tbl-part.yaml
+
+
+  - include:
+      file: tbl-service-part/20260123-1-create-tbl-service-part.yaml
+
+  - include:
+      file: tbl-feature/20260123-1-create-tbl-feature.yaml
+
+  - include:
+      file: tbl-car-feature/20260123-1-create-tbl-car-feature.yaml
+
+  # Auth/RBAC Tables
+  - include:
+      file: tbl-app-user/20260123-1-create-tbl-app-user.yaml
+
+  - include:
+      file: tbl-role/20260123-1-create-tbl-role.yaml
+
+  - include:
+      file: tbl-user-role/20260123-1-create-tbl-user-role.yaml
+
+  - include:
+      file: tbl-permission/20260123-1-create-tbl-permission.yaml
+
+  - include:
+      file: tbl-role-permission/20260123-1-create-tbl-role-permission.yaml
+
+  # Seed Data
+  - include:
+      file: tbl-role/20260123-2-insert-seed-roles.yaml
+
+  - include:
+      file: tbl-permission/20260123-2-insert-seed-permissions.yaml
+
+  # Sample Data (Optional - can be excluded for production)
+  - include:
+      file: tbl-brand/20260123-3-insert-sample-brands.yaml
+      context: dev
+
+  - include:
+      file: tbl-model/20260123-2-insert-sample-models.yaml
+      context: dev
+
+  - include:
+      file: tbl-car/20260123-2-insert-sample-cars.yaml
+      context: dev
+
+  - include:
+      file: tbl-cardetails/20260123-2-insert-sample-cardetails.yaml
+      context: dev
+
+  - include:
+      file: tbl-service-visit/20260123-2-insert-sample-service-visits.yaml
+      context: dev
+
+  - include:
+      file: tbl-part/20260123-2-insert-sample-parts.yaml
+      context: dev
+
+  - include:
+      file: tbl-service-part/20260123-2-insert-sample-service-parts.yaml
+      context: dev
+
+  - include:
+      file: tbl-feature/20260123-2-insert-sample-features.yaml
+      context: dev
+
+  - include:
+      file: tbl-car-feature/20260123-2-insert-sample-car-features.yaml
+      context: dev
