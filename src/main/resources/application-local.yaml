@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${HOST:localhost}:${PORT:5432}/${DB_NAME:car}?currentSchema=${SCHEMA:car_service}
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    hikari:
+      schema: car_service
+      minimum-idle: 2
+      idle-timeout: 40000
+      maximum-pool-size: 10
+      connection-timeout: 10000
+      keepalive-time: 30000
+
+course:
+  name: ABB Tech Academy local

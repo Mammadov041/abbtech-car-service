@@ -1,0 +1,45 @@
+server:
+  servlet:
+    context-path: /api-car
+
+spring:
+  profiles:
+    active: dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/car?currentSchema=car_service
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    hikari:
+      minimum-idle: 2
+      idle-timeout: 40000
+      maximum-pool-size: 10
+      connection-timeout: 10000
+      keepalive-time: 30000
+      schema: car_service
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    show-sql: true
+
+  liquibase:
+    enabled: false   # 🔥 THIS LINE FIXES EVERYTHING
+
+  threads:
+    virtual:
+      enabled: true
+
+course:
+  name: ABB Tech Academy
+  students: Asif, Vasif, Sajjad
+  teacher: TeacherName
+  address: Street Name
+  child:
+    country: CountryName
+    city: CityName
