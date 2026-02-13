@@ -12,6 +12,4 @@ public interface ModelService {
     List<RespModelDto> getModels();
     RespModelDto getModelById(Integer id);
     void deleteModelById(Integer id);
-    RespModelDto mapToDto(Model model);
-    List<RespModelDto> mapToDtoList(List<Model> cars);
 }

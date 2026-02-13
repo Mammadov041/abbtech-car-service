@@ -5,6 +5,7 @@ import com.abbtech.dto.request.ReqModelDto;
 import com.abbtech.dto.response.RespModelDto;
 import com.abbtech.exception.CarErrorEnum;
 import com.abbtech.exception.CarException;
+import com.abbtech.mapper.ModelMapper;
 import com.abbtech.model.Brand;
 import com.abbtech.model.Model;
 import com.abbtech.repository.BrandRepository;
@@ -34,6 +35,9 @@ class ModelServiceImplTest {
 
     @Mock
     private BrandRepository brandRepository;
+
+    @Mock
+    private ModelMapper modelMapper;
 
     @InjectMocks
     private ModelServiceImpl modelService;
@@ -299,7 +303,7 @@ class ModelServiceImplTest {
     @Test
     void mapToDto_ShouldMapModelToDtoCorrectly() {
         // Act
-        RespModelDto result = modelService.mapToDto(testModel);
+        RespModelDto result = modelMapper.toDto(testModel);
 
         // Assert
         assertNotNull(result);
@@ -331,7 +335,7 @@ class ModelServiceImplTest {
         List<Model> models = Arrays.asList(testModel, model2);
 
         // Act
-        List<RespModelDto> result = modelService.mapToDtoList(models);
+        List<RespModelDto> result = modelMapper.toDtoList(models);
 
         // Assert
         assertNotNull(result);

@@ -12,6 +12,4 @@ public interface BrandService {
     List<RespBrandDto> getBrands();
     RespBrandDto getBrandById(Integer id);
     void deleteBrandById(Integer id);
-    RespBrandDto mapToDto(Brand brand);
-    List<RespBrandDto> mapToDtoList(List<Brand> brands);
 }

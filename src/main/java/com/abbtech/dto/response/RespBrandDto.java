@@ -7,7 +7,7 @@ public record RespBrandDto(
         String name,
         String country,
         Integer foundedYear,
-        List<RespCarDto> models
+        List<RespModelDto> models
 ) {
 }
 

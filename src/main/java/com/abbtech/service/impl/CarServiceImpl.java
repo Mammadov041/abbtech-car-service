@@ -4,14 +4,15 @@ import com.abbtech.dto.request.ReqCarDto;
 import com.abbtech.dto.response.RespCarDto;
 import com.abbtech.exception.CarErrorEnum;
 import com.abbtech.exception.CarException;
+import com.abbtech.mapper.CarMapper;
 import com.abbtech.model.Car;
 import com.abbtech.model.Model;
 import com.abbtech.repository.CarRepository;
 import com.abbtech.repository.ModelRepository;
 import com.abbtech.service.CarService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
     private final ModelRepository modelRepository;
+    private final CarMapper carMapper;
 
     @Override
     public RespCarDto addCar(ReqCarDto dto) {
@@ -36,7 +38,20 @@ public class CarServiceImpl implements CarService {
                 .productionYear(dto.productionYear())
                 .build();
 
-        return mapToDto(carRepository.save(car));
+        return carMapper.toDto(carRepository.save(car));
+    }
+
+    @Override
+    public List<RespCarDto> getCars() {
+        return carMapper.toDtoList(carRepository.findAll());
+    }
+
+    @Override
+    public RespCarDto getCarById(Integer id) {
+        return carMapper.toDto(
+                carRepository.findById(id)
+                        .orElseThrow(() -> new CarException(CarErrorEnum.CAR_NOT_FOUND))
+        );
     }
 
     @Override
@@ -49,42 +64,11 @@ public class CarServiceImpl implements CarService {
         car.setMileageKm(dto.mileageKm());
         car.setProductionYear(dto.productionYear());
 
-        return mapToDto(car);
-    }
-
-    @Override
-    public List<RespCarDto> getCars() {
-        return mapToDtoList(carRepository.findAll());
-    }
-
-    @Override
-    public RespCarDto getCarById(Integer id) {
-        return mapToDto(
-                carRepository.findById(id)
-                        .orElseThrow(() -> new CarException(CarErrorEnum.CAR_NOT_FOUND))
-        );
+        return carMapper.toDto(car);
     }
 
     @Override
     public void deleteCarById(Integer id) {
         carRepository.deleteById(id);
     }
-
-    @Override
-    public RespCarDto mapToDto(Car car) {
-        return new RespCarDto(
-                car.getId(),
-                null,
-                car.getVin(),
-                car.getRegistrationNumber(),
-                car.getMileageKm(),
-                car.getProductionYear()
-        );
-    }
-
-    @Override
-    public List<RespCarDto> mapToDtoList(List<Car> cars) {
-        return cars.stream().map(this::mapToDto).toList();
-    }
 }
-

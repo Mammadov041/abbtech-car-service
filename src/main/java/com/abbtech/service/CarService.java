@@ -12,6 +12,4 @@ public interface CarService {
     List<RespCarDto> getCars();
     RespCarDto getCarById(Integer id);
     void deleteCarById(Integer id);
-    RespCarDto mapToDto(Car car);
-    List<RespCarDto> mapToDtoList(List<Car> cars);
 }
