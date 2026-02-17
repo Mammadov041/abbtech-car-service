@@ -5,6 +5,7 @@ import com.abbtech.dto.request.ReqModelDto;
 import com.abbtech.dto.response.RespBrandDto;
 import com.abbtech.exception.CarErrorEnum;
 import com.abbtech.exception.CarException;
+import com.abbtech.mapper.BrandMapper;
 import com.abbtech.model.Brand;
 import com.abbtech.model.Model;
 import com.abbtech.repository.BrandRepository;
@@ -37,6 +38,9 @@ class BrandServiceImplTest {
 
     @InjectMocks
     private BrandServiceImpl brandService;
+
+    @InjectMocks
+    private BrandMapper brandMapper;
 
     private Brand testBrand;
     private ReqBrandDto reqBrandDto;
@@ -258,7 +262,7 @@ class BrandServiceImplTest {
         testBrand.setModels(null);
 
         // Act
-        RespBrandDto result = brandService.mapToDto(testBrand);
+        RespBrandDto result = brandMapper.toDto(testBrand);
 
         // Assert
         assertNotNull(result);
@@ -271,7 +275,7 @@ class BrandServiceImplTest {
         testBrand.setModels(List.of(testModel));
 
         // Act
-        RespBrandDto result = brandService.mapToDto(testBrand);
+        RespBrandDto result = brandMapper.toDto(testBrand);
 
         // Assert
         assertNotNull(result);
@@ -292,7 +296,7 @@ class BrandServiceImplTest {
         List<Brand> brands = Arrays.asList(testBrand, brand2);
 
         // Act
-        List<RespBrandDto> result = brandService.mapToDtoList(brands);
+        List<RespBrandDto> result = brandMapper.toDtoListWithModels(brands);
 
         // Assert
         assertNotNull(result);
